@@ -1,11 +1,8 @@
 using Slicer2D;
-using Slicer2D.Linear;
-using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 using Utilities2D;
-using Debug = UnityEngine.Debug;
 using Random = UnityEngine.Random;
 
 public class PlayerEnemyAI : PlayerScriptBase
@@ -32,12 +29,6 @@ public class PlayerEnemyAI : PlayerScriptBase
     private void Awake()
     {
         Instance = this;
-    }
-
-    private void Start()
-    {
-        //defenceBounds = character.GetComponentInChildren<SpriteRenderer>().bounds;
-        //attackBounds = PlayerMain.Instance.Character.GetComponentInChildren<SpriteRenderer>().bounds;
     }
 
     private void LogicAI()
@@ -74,19 +65,11 @@ public class PlayerEnemyAI : PlayerScriptBase
         prevPointB = pointB;
 
         DrawPoints();
-
-        Debug.Log("DrawPoints()");
     }
 
     [ContextMenu("RndPoints")]
     private void RndAttackPoints()
     {
-        //float rangeMin = -10f;
-        //float rangeMax = 10f;
-
-        //pointA = new Vector2(Random.Range(rangeMin, rangeMax), Random.Range(rangeMin, rangeMax));
-        //pointB = new Vector2(Random.Range(rangeMin, rangeMax), Random.Range(rangeMin, rangeMax));
-
         Bounds attackBounds = PlayerMain.Instance.Character.GetComponentInChildren<SpriteRenderer>().bounds;
 
         pointA = GetRndPointOnBound(attackBounds.min, attackBounds.max);
@@ -96,10 +79,6 @@ public class PlayerEnemyAI : PlayerScriptBase
 
     private Vector2 GetRndPointOnBound(Vector2 min, Vector2 max)
     {
-        //Vector2 max = attackBounds.max;
-        //Vector2 min = attackBounds.min;
-
-
         if (Random.Range(0, 2) == 0) // 50/50
         {
             //a
@@ -164,27 +143,11 @@ public class PlayerEnemyAI : PlayerScriptBase
         parryDagger.transform.position = daggerPosition;
     }
 
-    //[ContextMenu("RndTransform")]
-    //private void RndTransform()
-    //{
-    //    float rndDegree = Random.Range(0f, 360f);
-    //    var rotation = Quaternion.Euler(0.0f, 0.0f, rndDegree);
-
-    //    daggerRotation = rotation;
-
-    //    Bounds defenceBounds = character.GetComponentInChildren<SpriteRenderer>().bounds;
-    //    daggerPosition = GetRndPointWithinBounds(defenceBounds.min, defenceBounds.max);
-    //}
-
     [ContextMenu("Do Stab")]
     public void DoStab()
     {
-        Debug.Log("\"Im sperm\"");
-
-        // ALL I NEED !!!
         Pair2D pair2D = new Pair2D(pointA, pointB);
         List<Slice2D> results = Slicing.LinearSliceAll(pair2D, null);
-
     }
 
     [ContextMenu("EndTurn")]
