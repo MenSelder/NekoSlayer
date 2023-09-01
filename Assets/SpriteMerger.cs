@@ -22,9 +22,9 @@ public class SpriteMerger : MonoBehaviour
 
     private void Start()
     {
-        Polygon2D polygon2D = Polygon2D.CreateFromCamera(Camera.main);
+        //Polygon2D polygon2D = Polygon2D.CreateFromCamera(Camera.main);
         //Slice2D slice2D = Slice2D.
-        Merger.Merge()
+        //Merger.Merge()
     }
 
     void Update()
